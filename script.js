@@ -21,17 +21,35 @@ function getWeatherForecast(city) {
     type: 'GET',
     dataType: 'json',
     success: function (data) {
-      var forecast = data.list;
+      displayTodayForecast(data.list[0]);
+      var forecast = data.list.filter(function(forecast){
+        return forecast.dt_txt.includes("15:00:00")});
       $.each(forecast, function(index, item) {
+        var celcius = item.main.temp - 273.15;
         var card = $("<div>").addClass("forecast-card");
         var date = $("<p>").text(item.dt_txt);
-        var temperature = $("<p>").text(data.list[0].main.temp);
-        var windSpeed = $("<p>").text(data.list[0].wind.speed);
-        var humidity = $("<p>").text(data.list[0].main.humidity);
+        var temperature = $("<p>").text(celcius.toFixed(2) + "°C");
+        var windSpeed = $("<p>").text(item.wind.speed);
+        var humidity = $("<p>").text(item.main.humidity);
         var icon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + item.weather[0].icon + ".png");
-        card.append(date, temperature, windSpeed, humidity, icon);
+        var cityName = $("<h3>").text(city);
+        card.append( cityName,date, temperature, windSpeed, humidity, icon);
         $("#forecast-cards-container").append(card);
     });
     }
   })
-};
+  };
+  
+  
+
+  function displayTodayForecast(forecast) {
+    var tempCelsius = (forecast.main.temp - 273.15).toFixed(2);
+    $("#today-temp").text(tempCelsius);
+    $("#today-humidity").text(forecast.main.humidity);
+    $("#today-wind-speed").text(forecast.wind.speed);
+    $("#today-description").text(forecast.weather[0].description);
+    var iconUrl = "http://openweathermap.org/img/w/" + forecast.weather[0].icon + ".png";
+    var icon = $("<img>").attr("src", iconUrl);
+    $("#today-forecast").append(icon);
+  }
+  

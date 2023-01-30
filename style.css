@@ -1,0 +1,56 @@
+body {background-image:url(images/lukasz-lada-LtWFFVi1RXQ-unsplash.jpg);
+}
+
+#form-heading {
+width: 250px;
+}
+
+#forecast-cards-container {
+display: flex;
+justify-content: center;
+}
+
+.forecast-card {
+  width: 200px;
+  height: 300px;
+  background-color: rgb(173, 242, 251);
+  margin: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.forecast-card p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.forecast-card img {
+  width: 80px;
+  height: 50px;
+}
+
+.title{
+  font-size: 400px;
+}
+
+h3 {
+  font-size: 28px;
+  background-color: whitesmoke;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#today-forecast {
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  width: 950px;
+  height: 195px;
+  padding: 5px;
+  margin: 5px;
+}
+
+#today-temp {
+  padding: 10px;
+}
